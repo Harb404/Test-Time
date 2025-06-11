@@ -1,0 +1,48 @@
+using System;
+
+namespace TestTime
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Time t1 = 720;
+            Time t2 = 945;
+
+            int minutesSinceMidnight = (int)t2;
+
+            Console.WriteLine("Time 1 (from 720 minutes): " + t1);
+            Console.WriteLine("Time 2 (from 945 minutes): " + t2);
+            Console.WriteLine("Minutes since midnight (from Time object): " + minutesSinceMidnight);
+        }
+    }
+
+    public struct Time
+    {
+        private readonly int minutes;
+
+        public Time(int hh, int mm)
+        {
+            this.minutes = 60 * hh + mm;
+        }
+
+        public Time(int minutes)
+        {
+            this.minutes = minutes;
+        }
+
+        public int Hour => minutes / 60;
+        public int Minute => minutes % 60;
+
+        public static Time operator +(Time t1, Time t2) => new Time(t1.minutes + t2.minutes);
+        public static Time operator -(Time t1, Time t2) => new Time(Math.Max(0, t1.minutes - t2.minutes));
+
+        public static implicit operator Time(int minutes) => new Time(minutes);
+        public static explicit operator int(Time t) => t.minutes;
+
+        public override string ToString()
+        {
+            return string.Format("{0:D2}:{1:D2}", Hour, Minute);
+        }
+    }
+}

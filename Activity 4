@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace TestTime
 {
@@ -18,21 +18,21 @@ namespace TestTime
         }
     }
 
-    public struct Time
-    {
-        private readonly int minutes;
-
-        public Time(int hh, int mm)
+        public struct Time
         {
-            minutes = 60 * hh + mm;
-        }
+            private readonly int minutes;
 
-        public int Hour => minutes / 60;
-        public int Minute => minutes % 60;
+            public Time(int hh, int mm)
+            {
+                this.minutes = 60 * hh + mm;
+            }
 
-        public override string ToString()
-        {
-            return string.Format("{0:D2}:{1:D2}", Hour, Minute);
-        }
+            public int Hour => minutes / 60;
+            public int Minute => minutes % 60;
+
+            public override string ToString()
+            {
+                return string.Format("{0:D2}:{1:D2}", Hour, Minute);
+            }
     }
 }

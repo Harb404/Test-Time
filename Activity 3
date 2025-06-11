@@ -1,0 +1,38 @@
+﻿using System;
+
+namespace TestTime
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Time t1 = new Time(23, 45);
+            Time t2 = new Time(10, 5);
+            Time t3 = new Time(0, 30);
+
+            Console.WriteLine("Time 1: " + t1);
+            Console.WriteLine("Time 2: " + t2);
+            Console.WriteLine("Time 3: " + t3);
+
+            Console.WriteLine($"Hour: {t1.Hour}, Minute: {t1.Minute}");
+        }
+    }
+
+    public struct Time
+    {
+        private readonly int minutes;
+
+        public Time(int hh, int mm)
+        {
+            minutes = 60 * hh + mm;
+        }
+
+        public int Hour => minutes / 60;
+        public int Minute => minutes % 60;
+
+        public override string ToString()
+        {
+            return string.Format("{0:D2}:{1:D2}", Hour, Minute);
+        }
+    }
+}
